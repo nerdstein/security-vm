@@ -17,11 +17,9 @@
     - geerlingguy.firewall
     - geerlingguy.git
     - geerlingguy.composer
-
     # Conditionally-installed roles.
     - { role: jackl0phty.nmap, when: '"nmap" in installed_extras' }
     - { role: nerdstein.W3AF, when: '"w3af" in installed_extras' }
-
     # Roles for security and stability on production.
     - { role: geerlingguy.security, when: extra_security_enabled }
 
