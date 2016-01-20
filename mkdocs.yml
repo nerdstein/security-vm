@@ -1,0 +1,15 @@
+site_name: Security VM Documentation
+
+repo_url: https://github.com/nerdstein/security-vm
+site_description: 'Security VM - A VM for web development security tools, built with Vagrant + Ansible'
+theme: readthedocs
+
+markdown_extensions:
+  - toc:
+      permalink: True
+
+pages:
+  - Home: 'index.md'
+  - Features:
+    - 'W3AF': 'features/w3af.md'
+    - 'NMAP': 'features/nmap.md'

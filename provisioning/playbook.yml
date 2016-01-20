@@ -1,0 +1,39 @@
+---
+- hosts: all
+  become: yes
+
+  vars_files:
+    - ../config.yml
+
+  pre_tasks:
+    - include: tasks/init-debian.yml
+      when: ansible_os_family == 'Debian'
+    - include: tasks/init-redhat.yml
+      when: ansible_os_family == 'RedHat'
+
+  roles:
+    # Essential roles.
+    - { role: geerlingguy.repo-remi, when: ansible_os_family == 'RedHat' }
+    - geerlingguy.firewall
+    - geerlingguy.git
+    - geerlingguy.composer
+
+    # Conditionally-installed roles.
+    - { role: jackl0phty.nmap, when: '"nmap" in installed_extras' }
+    - { role: nerdstein.W3AF, when: '"w3af" in installed_extras' }
+
+    # Roles for security and stability on production.
+    - { role: geerlingguy.security, when: extra_security_enabled }
+
+  tasks:
+    - name: Check if Drupal is already set up.
+      stat: "path={{ drupal_core_path }}/index.php"
+      register: drupal_site
+
+    - include: tasks/sshd.yml
+    - include: tasks/extras.yml
+      when: ansible_os_family == 'Debian'
+
+    - name: Run configured post-provision shell scripts.
+      script: "{{ item }}"
+      with_items: post_provision_scripts

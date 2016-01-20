@@ -1,0 +1,10 @@
+---
+- src: geerlingguy.composer
+- src: geerlingguy.git
+- src: geerlingguy.firewall
+- src: geerlingguy.nodejs
+- src: geerlingguy.repo-remi
+- src: geerlingguy.security
+- src: Stouts.python
+- src: jackl0phty.nmap
+- src: nerdstein.W3AF

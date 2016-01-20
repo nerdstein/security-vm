@@ -1,0 +1,101 @@
+---
+# `vagrant_box` can also be set to geerlingguy/centos6, geerlingguy/centos7,
+# geerlingguy/ubuntu1204, parallels/ubuntu-14.04, etc.
+vagrant_box: geerlingguy/ubuntu1404
+vagrant_user: vagrant
+vagrant_synced_folder_default_type: nfs
+
+# If you need to run multiple instances of Drupal VM, set a unique hostname,
+# machine name, and IP address for each instance.
+vagrant_hostname: securityvm.dev
+vagrant_machine_name: securityvm
+vagrant_ip: 192.168.88.88
+
+# Allow Drupal VM to be accessed via a public network interface on your host.
+# Vagrant boxes are insecure by default, so be careful. You've been warned!
+# See: https://docs.vagrantup.com/v2/networking/public_network.html
+vagrant_public_ip: ""
+
+# A list of synced folders, with the keys 'local_path', 'destination', and
+# a 'type' of [nfs|rsync|smb] (leave empty for slow native shares). See
+# http://docs.drupalvm.com/en/latest/extras/syncing-folders/ for more info.
+vagrant_synced_folders:
+  # The first synced folder will be used for the default Drupal installation, if
+  # build_makefile: is 'true'.
+  - local_path: ~/Sites/drupalvm
+    destination: /var/www/drupalvm
+    type: nfs
+    create: true
+
+# Memory and CPU to use for this VM.
+vagrant_memory: 1024
+vagrant_cpus: 2
+
+
+# Comment out any extra utilities you don't want to install. If you don't want
+# to install *any* extras, make set this value to an empty set, e.g. `[]`.
+installed_extras:
+  - nmap
+  - w3af
+
+# w3af config.
+w3af_install_path: /usr/local/share/w3af
+w3af_console_executable: w3af_console
+w3af_path: /usr/local/bin/w3af_console
+w3af_version: 1.6.49
+w3af_keep_updated: no
+w3af_force_update: no
+w3af_add_to_path: true
+w3af_load_dependencies: true
+
+# nmap config.
+# Set type of install to do.
+nmap_install_type: 'source'
+
+# Set version of Nmap is installed ( Used only for installing via source ).
+nmap_version: '6.47'
+
+# Nmap download URL ( Used only for installing via source ).
+nmap_download_url: 'https://nmap.org/dist/nmap-{{ nmap_version }}.tar.bz2'
+
+# Add any extra apt or yum packages you would like installed.
+extra_packages:
+  - unzip
+
+# `nodejs` must be in installed_extras for this to work.
+nodejs_version: "0.12"
+nodejs_npm_global_packages: []
+
+# `ruby` must be in installed_extras for this to work.
+ruby_install_gems_user: "{{ vagrant_user }}"
+ruby_install_gems: []
+
+# You can configure almost anything else on the server in the rest of this file.
+extra_security_enabled: false
+
+firewall_allowed_tcp_ports:
+  - "22"
+  - "25"
+  - "80"
+  - "81"
+  - "443"
+  - "4444"
+  - "8025"
+  - "8080"
+  - "8443"
+  - "8983"
+firewall_log_dropped_packets: false
+
+
+composer_path: /usr/bin/composer
+composer_home_path: '/home/vagrant/.composer'
+# composer_global_packages:
+#   - { name: phpunit/phpunit, release: '@stable' }
+
+# Run specified scripts after VM is provisioned. Path is relative to the
+# `provisioning/playbook.yml` file.
+post_provision_scripts: []
+  # - "../examples/scripts/configure-solr.sh"
+
+# Other configuration.
+known_hosts_path: ~/.ssh/known_hosts
