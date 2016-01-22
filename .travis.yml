@@ -17,7 +17,7 @@ script:
   - 'ansible-galaxy install -r provisioning/requirements.yml'
 
   # Run Ansible's syntax and playbook check on the main playbook.
-  - 'ansible-playbook -i "localhost," -c local provisioning/playbook.yml --syntax-check'
+  - 'ansible-playbook -i "localhost," -c local provisioning/playbook.yml'
 
   # Check the config file and drupal make file YAML syntax.
   - >
