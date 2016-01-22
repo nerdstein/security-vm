@@ -8,3 +8,5 @@
 - src: Stouts.python
 - src: jackl0phty.nmap
 - src: nerdstein.W3AF
+- src: nerdstein.scrapy
+- src: nerdstein.PA11Y

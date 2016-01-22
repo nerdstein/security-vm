@@ -20,14 +20,12 @@
     # Conditionally-installed roles.
     - { role: jackl0phty.nmap, when: '"nmap" in installed_extras' }
     - { role: nerdstein.W3AF, when: '"w3af" in installed_extras' }
+    - { role: nerdstein.scrapy, when: '"scrapy" in installed_extras' }
+    - { role: nerdstein.PA11Y, when: '"pa11y" in installed_extras' }
     # Roles for security and stability on production.
     - { role: geerlingguy.security, when: extra_security_enabled }
 
   tasks:
-    - name: Check if Drupal is already set up.
-      stat: "path={{ drupal_core_path }}/index.php"
-      register: drupal_site
-
     - include: tasks/sshd.yml
     - include: tasks/extras.yml
       when: ansible_os_family == 'Debian'

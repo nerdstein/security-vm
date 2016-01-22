@@ -37,6 +37,8 @@ vagrant_cpus: 2
 installed_extras:
   - nmap
   - w3af
+  - pa11y
+  - scrapy
 
 # w3af config.
 w3af_install_path: /usr/local/share/w3af
