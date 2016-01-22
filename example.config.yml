@@ -37,6 +37,8 @@ vagrant_cpus: 2
 installed_extras:
   - nmap
   - w3af
+  - pa11y
+  - scrapy
 
 # w3af config.
 w3af_install_path: /usr/local/share/w3af
@@ -64,8 +66,7 @@ extra_packages:
 
 # `nodejs` must be in installed_extras for this to work.
 nodejs_version: "0.12"
-nodejs_npm_global_packages:
-  - pa11y
+nodejs_npm_global_packages: []
 
 # `ruby` must be in installed_extras for this to work.
 ruby_install_gems_user: "{{ vagrant_user }}"
