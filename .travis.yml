@@ -22,3 +22,8 @@ script:
   # Check the config file and drupal make file YAML syntax.
   - >
     python -c "import yaml; yaml.load( open('example.config.yml', 'r'), Loader=yaml.CLoader  )"
+
+  # Check proper install of packages.
+  - w3af_console -v
+  - pa11y
+  - nmap

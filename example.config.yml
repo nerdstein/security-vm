@@ -64,7 +64,8 @@ extra_packages:
 
 # `nodejs` must be in installed_extras for this to work.
 nodejs_version: "0.12"
-nodejs_npm_global_packages: []
+nodejs_npm_global_packages:
+  - pa11y
 
 # `ruby` must be in installed_extras for this to work.
 ruby_install_gems_user: "{{ vagrant_user }}"
